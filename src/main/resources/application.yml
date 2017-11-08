@@ -7,7 +7,7 @@ server:
 ###
 spring:
   datasource:
-    url: jdbc:h2:mem:examplecraft;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:mem:craft_demo_db;DB_CLOSE_DELAY=-1
     platform: h2
     username: sa
     password:
@@ -16,7 +16,8 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-
+  main:
+        banner-mode: "off"
 
 ###
 #   H2 Settings

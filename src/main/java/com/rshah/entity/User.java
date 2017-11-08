@@ -7,72 +7,71 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
-    
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="id")
-    private String userId;
-    
-    @Column(name="email")
-    private String email;
-    
-    @Column(name="first_name")
-    private String firstName;
-    
-    @Column(name="last_name")
-    private String lastName;
 
-    public User(String userId, String email, String firstName, String lastName) {
-        super();
-        this.userId = userId;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Long userId;
 
-    public String getUserId() {
-        return userId;
-    }
+	@Column(name = "email")
+	private String email;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	@Column(name = "first_name")
+	private String firstName;
 
-    public String getEmail() {
-        return email;
-    }
+	@Column(name = "last_name")
+	private String lastName;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public User() {
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public User(Long userId, String email, String firstName, String lastName) {
+		super();
+		this.userId = userId;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public Long getUserId() {
+		return userId;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    @Override
-    public String toString() {
-        return "User [userId=" + userId + ", email=" + email + ", firstName="
-                + firstName + ", lastName=" + lastName + "]";
-    }
-    
-    
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
+				+ "]";
+	}
 
 }
