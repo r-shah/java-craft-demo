@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rshah.entity.User;
-import com.rshah.jpa.UserRepository;
+import com.rshah.service.UserService;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-	private UserRepository userRepo;
+	private UserService userService;
 
 	@Autowired
-	public UserController(UserRepository userRepository) {
-		this.userRepo = userRepository;
+	public UserController(UserService userService) {
+		this.userService = userService;
 	}
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<User>> findAll() {
-		return ResponseEntity.ok(this.userRepo.findAll());
+		return ResponseEntity.ok(this.userService.findAll());
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		User savedUser = this.userRepo.save(user);
+		User savedUser = this.userService.save(user);
 		return ResponseEntity.created(URI.create("/" + savedUser.getUserId())).body(savedUser);
 	}
 }
