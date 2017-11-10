@@ -25,6 +25,7 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
+	// Constructors
 	public User() {
 	}
 
@@ -36,6 +37,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
+	// Getter and setter
 	public Long getUserId() {
 		return userId;
 	}
@@ -67,7 +69,8 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	
+	//ToString method
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
