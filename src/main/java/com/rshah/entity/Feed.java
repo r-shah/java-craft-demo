@@ -12,13 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "post")
-public class Post {
+@Table(name = "message_feed")
+public class Feed {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private Long postId;
+	private Long feedId;
 
 	@Column(name = "message")
 	private String message;
@@ -32,23 +32,23 @@ public class Post {
 	private LocalDateTime createdOn;
 
 	// Constructors
-	public Post() {
+	public Feed() {
 
 	}
 
-	public Post(Long postId, String message, User user, LocalDateTime createdOn) {
+	public Feed(Long feedID, String message, User user, LocalDateTime createdOn) {
 		super();
-		this.postId = postId;
+		this.feedId = feedID;
 		this.message = message;
 		this.user = user;
 		this.createdOn = createdOn;
 	}
 	// Getters and Setters
-	public Long getPostId() {
-		return postId;
+	public Long getFeedId() {
+		return feedId;
 	}
-	public void setPostId(Long postId) {
-		this.postId = postId;
+	public void setFeedId(Long feedId) {
+		this.feedId = feedId;
 	}
 	public String getMessage() {
 		return message;
@@ -72,7 +72,7 @@ public class Post {
 	// ToString method
 	@Override
 	public String toString() {
-		return "Post [postId=" + postId + ", message=" + message + ", user=" + user + ", createdOn=" + createdOn + "]";
+		return "Feed [feedId=" + feedId + ", message=" + message + ", user=" + user + ", createdOn=" + createdOn + "]";
 	}
 	
 	
