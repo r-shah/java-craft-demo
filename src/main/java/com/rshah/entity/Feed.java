@@ -1,6 +1,6 @@
 package com.rshah.entity;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "message_feed")
+
+@NamedNativeQuery(name = "Feed.getByUserIds",
+query="select * from message_feed f where f.user_id in :ids order by f.created_ts limit 100", resultClass = Feed.class)
+
 public class Feed {
 
 	@Id
@@ -20,7 +27,7 @@ public class Feed {
 	@Column(name = "id")
 	private Long feedId;
 
-	@Column(name = "message")
+	@Column(name = "message", nullable = false)
 	private String message;
 
 	// Posts has Many to one relation with user 
@@ -28,15 +35,16 @@ public class Feed {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@Column(name = "created_ts")
-	private LocalDateTime createdOn;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "created_ts", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdOn;
 
-	// Constructors
 	public Feed() {
 
 	}
 
-	public Feed(Long feedID, String message, User user, LocalDateTime createdOn) {
+	public Feed(Long feedID, String message, User user, Date createdOn) {
 		super();
 		this.feedId = feedID;
 		this.message = message;
@@ -62,10 +70,10 @@ public class Feed {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public LocalDateTime getCreatedOn() {
+	public Date getCreatedOn() {
 		return createdOn;
 	}
-	public void setCreatedOn(LocalDateTime createdOn) {
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 	

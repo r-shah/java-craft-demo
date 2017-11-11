@@ -16,7 +16,7 @@ public class User {
 	@Column(name = "id")
 	private Long userId;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "first_name")
@@ -25,7 +25,6 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 
-	// Constructors
 	public User() {
 	}
 

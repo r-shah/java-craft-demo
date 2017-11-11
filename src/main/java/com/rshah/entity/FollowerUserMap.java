@@ -7,12 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "follower_user_map", uniqueConstraints = @UniqueConstraint(columnNames = { "following_user_id",
 		"followed_user_id" }))
+@NamedNativeQuery(name = "FollowerUserMap.getFollowedIdsByFollowingUserId",
+		query="SELECT m.* FROM follower_user_map m WHERE m.following_user_id = :followingUserId", resultClass = FollowerUserMap.class)
+
 public class FollowerUserMap {
 
 	@Id
@@ -32,7 +36,6 @@ public class FollowerUserMap {
 	@JoinColumn(name = "followed_user_id", nullable = false)
 	private User followedUser;
 
-	// constructors
 	public FollowerUserMap() {
 	}
 

@@ -1,6 +1,7 @@
 package com.rshah.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,14 @@ public class UserService {
     public User save(User user) {
         return this.userRepo.save(user);
     }
+    
+    public User getById(Long id){
+        return this.userRepo.getOne(id);
+    }
+
+	public Optional<User> getUserByEmail(String userEmail) {
+		Optional<User> rval = Optional.empty();
+		rval = Optional.ofNullable(this.userRepo.getUserByEmail(userEmail));
+		return rval;
+	}
 }
