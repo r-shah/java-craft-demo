@@ -31,6 +31,9 @@ public class UserService {
         return this.userRepo.getOne(id);
     }
 
+    /*
+     * if userEmail does not exit, it will return empty object
+     */
 	public Optional<User> getUserByEmail(String userEmail) {
 		Optional<User> rval = Optional.empty();
 		rval = Optional.ofNullable(this.userRepo.getUserByEmail(userEmail));

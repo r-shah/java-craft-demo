@@ -1,6 +1,6 @@
 package com.rshah.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.time.Instant;
 import java.util.Arrays;
@@ -15,7 +15,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -58,15 +57,23 @@ public class FeedControllerTest {
 
 	@Test
 	public void createFeed() throws Exception {
-		// JSON data that need to be posted
+		/*
+		 *  JSON data that need to be posted
+		 */
 		String feedData = "{\"message\":\"Test message feed\",\"user\":{\"userId\":1,\"email\":\"bob@email.com\",\"firstName\":\"bob\",\"lastName\":null},\"createdOn\":"
 				+ currentMillisec + "}";
-		// When save method is invoked, let mockito return the feed object
+		/*
+		 *  When save method is invoked, let mockito return the feed object
+		 */
 		Mockito.when(feedService.save(Mockito.any(Feed.class))).thenReturn(this.feed);
-		// expected will be json object with id in it
+		/*
+		 *  expected will be json object with id in it
+		 */
 		String expected = "{\"feedId\":1,\"message\":\"Test message feed\",\"user\":{\"userId\":1,\"email\":\"bob@email.com\",\"firstName\":\"bob\",\"lastName\":null},\"createdOn\":"
 				+ currentMillisec + "}";
-		// In case of post provide contentType and content
+		/*
+		 *  In case of post provide contentType and content
+		 */
 		RequestBuilder requestBld = MockMvcRequestBuilders.post("/feed").accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON).header("user", this.userEmail).content(feedData);
 		MvcResult result = mockMvc.perform(requestBld).andReturn();
@@ -78,9 +85,13 @@ public class FeedControllerTest {
 
 	@Test
 	public void getFeeds() throws Exception {
-
+	    /*
+	     * It mocks, when findFeedsForLoggedInUser method is called with any data of User class return feedList
+	     */
 		Mockito.when(feedService.findFeedsForLoggedInUser(Mockito.any(User.class))).thenReturn(this.feedList);
-
+		/*
+		 *  expected will be json object with id in it
+		 */
 		String expected = "[{\"feedId\":1,\"message\":\"Test message feed\",\"user\":{\"userId\":1,\"email\":\"bob@email.com\",\"firstName\":\"bob\",\"lastName\":null},\"createdOn\":"
 				+ currentMillisec + "}]";
 

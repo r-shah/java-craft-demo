@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rshah.entity.User;
 import com.rshah.service.UserService;
-
+/*
+ * This rest controller is used for creating and getting list of users
+ */
 @RestController
 @RequestMapping("/users")
 public class UserController {

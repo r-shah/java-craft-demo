@@ -33,6 +33,9 @@ public class FeedController {
 		this.userService = userService;
 	}
 
+	/*
+	 * Getting list of feeds or tweets those are posted by users which logged in user is following
+	 */
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Feed>> getFeedsForLogginUser(@RequestHeader("user") String userEmail) {
 		/*
@@ -45,6 +48,9 @@ public class FeedController {
 		return ResponseEntity.ok(this.feedService.findFeedsForLoggedInUser(user.get()));
 	}
 
+	/*
+	 * Endpoint for creating feed
+	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Feed> createFeed(@RequestHeader("user") String userEmail, @RequestBody Feed feed) {
 

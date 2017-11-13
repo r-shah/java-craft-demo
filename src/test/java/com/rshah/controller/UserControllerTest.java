@@ -44,14 +44,20 @@ public class UserControllerTest {
 
     @Test
     public void createUser() throws Exception {
-        // JSON data that need to be posted
+        /*
+         *  JSON data that need to be posted
+         */
         String feedData = "{\"email\":\"bob@email.com\",\"firstName\":\"bob\",\"lastName\":null}";
         // When save method is invoked, let mockito return the user object
         Mockito.when(userService.save(Mockito.any(User.class))).thenReturn(
                 this.user);
-        // expected will be json object with id in it
+        /*
+         *  expected will be json object with id in it
+         */
         String expected = "{\"userId\":1,\"email\":\"bob@email.com\",\"firstName\":\"bob\",\"lastName\":null}";
-        // In case of post provide contentType and content
+        /*
+         *  In case of post provide contentType and content
+         */
         RequestBuilder requestBld = MockMvcRequestBuilders.post("/users")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON).content(feedData);

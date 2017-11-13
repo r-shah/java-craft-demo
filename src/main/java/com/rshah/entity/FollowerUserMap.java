@@ -24,14 +24,18 @@ public class FollowerUserMap {
 	@Column(name = "id")
 	private Long id;
 
-	// Following user has Many to one relation with user since there can be many
-	// user-follower relationship
+	/*
+	 *  Following user has Many to one relation with user since there can be many
+	 *  user-follower relationship
+	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "following_user_id", nullable = false)
 	private User followingUser;
 
-	// Followed user also has Many to one relation with user since many user can
-	// follow a user
+	/*
+	 *  Followed user also has Many to one relation with user since many user can 
+	 *  follow a specific user
+	 */
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "followed_user_id", nullable = false)
 	private User followedUser;
